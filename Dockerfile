@@ -17,7 +17,8 @@ RUN python3 setup.py install --user
 FROM python:3.9-alpine
 
 RUN apk upgrade --no-cache
+RUN apk add --no-cache tini
 
 COPY --from=build /root/.local /root/.local
 
-ENTRYPOINT ["/root/.local/bin/vedirect"]
+ENTRYPOINT ["tini", "--", "/root/.local/bin/vedirect"]
