@@ -21,4 +21,5 @@ RUN apk add --no-cache tini
 
 COPY --from=build /root/.local /root/.local
 
-ENTRYPOINT ["tini", "--", "/root/.local/bin/vedirect"]
+ENV PATH=/root/.local/bin:$PATH
+ENTRYPOINT ["tini", "--", "vedirect"]
